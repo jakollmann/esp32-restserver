@@ -43,46 +43,6 @@ void connectToWiFi() {
 }
 
 void setupRouting() {
-  /*
-    server.on("/valve/*", HTTP_GET, [](AsyncWebServerRequest *request){
-
-    char templatePath[] = "/valve/:valveId/:action";
-    char urlBuffer[60];
-    request->url().toCharArray(urlBuffer, 60);
-    int urlLength = request->url().length();
-    TokenIterator templateIterator(templatePath, strlen(templatePath), '/');
-    TokenIterator pathIterator(urlBuffer, urlLength, '/');
-    UrlTokenBindings bindings(templateIterator, pathIterator);
-
-    int valveId = atoi ( bindings.get("valveId") );
-    char action[10];
-    strncpy ( action, bindings.get("action"), 10 );
-
-    int httpCode = 200;
-    jsonDocument.clear();
-    jsonDocument["Valve ID"] = valveId;
-    jsonDocument["action"] = action;
-
-    if ( strcmp ( action, "status" ) == 0 ) {
-      if ( valveId > maxValveID ) {
-        httpCode = 404;
-        jsonDocument["result"] = "404 - no valid id";
-      } else {
-        int value = digitalRead ( valveGPIO[valveId-1] );
-        jsonDocument["result"] = value == HIGH ? "HIGH" : "LOW";
-      }
-
-    } else {
-      httpCode = 404;
-      jsonDocument["result"] = "404 - no valid status";
-    }
-
-    serializeJson(jsonDocument, outputBuffer);
-
-    request->send(httpCode, "application/json", outputBuffer);
-    });
-  */
-  // server.on("/valve/*", HTTP_POST, setValveStatus);
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
     jsonDocument.clear();
